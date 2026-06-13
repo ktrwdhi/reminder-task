@@ -1,0 +1,91 @@
+[
+    {
+        "id":1,
+        "nama_tugas":"mencari apalah gatau",
+        "mata_pelajaran":"kalkulus",
+        "tugas":"nganuin ituan",
+        "deadline":"9-8-2026",
+        "status":"selesai"
+    },
+    {
+        "id":2,
+        "nama_tugas":"mencari apalah gatau",
+        "mata_pelajaran":"kalkulus",
+        "tugas":"nganuin ituan",
+        "deadline":"9-8-2026",
+        "status":"Belum selesai"
+    },
+    {
+        "id":3,
+        "nama_tugas":"mencari apalah gatau",
+        "mata_pelajaran":"pemrograman",
+        "tugas":"nganuin ituan",
+        "deadline":"9-8-2026",
+        "status":"selesai"
+    },
+    {
+        "id":4,
+        "nama_tugas":"mencari apalah gatau",
+        "mata_pelajaran":"bahasa inggris",
+        "tugas":"nganuin ituan",
+        "deadline":"9-8-2026",
+        "status":"selesai"
+    },
+    {
+        "id":4,
+        "nama_tugas":"mencari apalah gatau",
+        "mata_pelajaran":"bahasa inggris",
+        "tugas":"nganuin ituan",
+        "deadline":"9-8-2026",
+        "status":"selesai"
+    },
+    {
+        "id":4,
+        "nama_tugas":"mencari apalah gatau",
+        "mata_pelajaran":"bahasa inggris",
+        "tugas":"nganuin ituan",
+        "deadline":"9-8-2026",
+        "status":"selesai"
+    },
+    {
+        "id":4,
+        "nama_tugas":"mencari apalah gatau",
+        "mata_pelajaran":"bahasa inggris",
+        "tugas":"nganuin ituan",
+        "deadline":"9-8-2026",
+        "status":"selesai"
+    },
+    {
+        "id":4,
+        "nama_tugas":"mencari apalah gatau",
+        "mata_pelajaran":"bahasa inggris",
+        "tugas":"nganuin ituan",
+        "deadline":"9-8-2026",
+        "status":"selesai"
+    },
+    {
+        "id":4,
+        "nama_tugas":"mencari apalah gatau",
+        "mata_pelajaran":"bahasa inggris",
+        "tugas":"nganuin ituan",
+        "deadline":"9-8-2026",
+        "status":"selesai"
+    },
+    {
+        "id":4,
+        "nama_tugas":"mencari apalah gatau",
+        "mata_pelajaran":"bahasa inggris",
+        "tugas":"nganuin ituan",
+        "deadline":"9-8-2026",
+        "status":"selesai"
+    },
+    {
+        "id":4,
+        "nama_tugas":"mencari apalah gatau",
+        "mata_pelajaran":"bahasa inggris",
+        "tugas":"nganuin ituan",
+        "deadline":"9-8-2026",
+        "status":"selesai"
+    }
+
+]
