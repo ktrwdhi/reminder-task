@@ -32,6 +32,7 @@
             position: fixed;
             width: 100%;
             height: 90px;
+            z-index: 100;
         }
         .hamburger{
             display: flex;
@@ -148,6 +149,7 @@
                 width: 200px;
                 transform: translateX(-100%);
                 transition: transform 0.3s ease;
+                z-index: 99;
             }
 
             .sidebar.show{
@@ -157,8 +159,7 @@
             .sidebar ul{
                 padding: 10px;
             }
-
-            .nametag{
+            .hamburger h1{
                 display: none;
             }
             .sidebar i,.sidebar span{
@@ -186,7 +187,7 @@
     <div class="header" id="header">
         <div class="hamburger">
             <button onclick="hideSidebar()"><i class="fa-solid fa-bars"></i></button>
-            <h1>DASHBOARD SISWA</h1>
+            @yield('title')
         </div>
         <div class="biodata">
             <div class="nametag">
@@ -204,8 +205,8 @@
         <div class="sidebar" id="sidebar">
             <ul>
                 <a href="/"><li><i class="fa-solid fa-house"></i><span>Beranda</span></li></a>
-                <a href="/tugas"><li><i class="fa-solid fa-list-check"></i><span>Tugas</span></li></a>
-                <a href=""><li><i class="fa-solid fa-graduation-cap"></i></i><span>Pelajaran</span></li></a>
+                <a href="/task"><li><i class="fa-solid fa-list-check"></i><span>Tugas</span></li></a>
+                <a href="/subject"><li><i class="fa-solid fa-graduation-cap"></i></i><span>Pelajaran</span></li></a>
             </ul>
         </div>
         <div class="main-content">

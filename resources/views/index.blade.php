@@ -65,6 +65,9 @@
 </head>
 <body>
 @extends('template.template')
+@section('title')
+    <h1>DASHBOARD MAHASISWA</h1>
+@endsection
 @section('content')
     <div class="greetings">
             <h2>SELAMAT <span id="time"></span>, KATIAR WADHI!</h2>
@@ -124,7 +127,7 @@
     const time = document.getElementById('time');
 
     function greetings(){
-        if(hours >= 5 && hours < 12){
+        if(hours >= 3 && hours < 12){
             time.textContent = 'PAGI';
         } else if(hours >= 12 && hours < 15){
             time.textContent = 'SIANG';

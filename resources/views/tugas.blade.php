@@ -113,6 +113,10 @@
     left: 0;
     display: none;
 }
+.pop-up.show{
+    display: flex;
+    animation: slideDown 0.3s ease-out;
+}
 @media (max-width:800px) {
     .task-name, .status{
         transform: scale(0.9);
@@ -127,77 +131,76 @@
 }
 </style>
 @extends('template.template')
-@section('content')    
+@section('content') 
+@section('title')
+    <h1>DAFTAR TUGAS</h1>
+@endsection 
+<script>
+    const tasks = @json($tasks);
+</script>  
     <div class="task">
         <h2>DAFTAR TUGAS</h2>
-        <ul class="task-list"></ul>
+        <ul class="task-list">
+            @foreach ($tasks as $task)    
+                <li class="task-item" id="task-item" data-id="{{ $task->id }}">
+                    <div class="task-name">
+                        <h3>{{ strtoupper($task->task_name) }}</h3>
+                        <p>Deadline : {{ $task->deadline }}</p>
+                    </div>
+                    <h4 class="status">{{ $task->status }}</h4>
+                </li>
+            @endforeach
+        </ul>
     </div>
     <div class="pop-up"></div>
     <div class="overlay"></div>
     <script>
-        const taskList = document.querySelector(".task-list");
         const popUp = document.querySelector(".pop-up");
         const overlay = document.querySelector(".overlay");
+        const taskItems = document.querySelectorAll(".task-item");
 
-        fetch("asset/tugas.json").then(response => response.json()).then(data => data.forEach(
-            task => {
-                const li = document.createElement("li");
+        taskItems.forEach(item => {
+            item.addEventListener("click", () => {
 
-                li.innerHTML = 
-                `<div class="task-name">
-                    <h3>${task.nama_tugas}</h3>
-                    <p>Deadline : ${task.deadline}</p>
-                </div>
-                <h4 class="status">${task.status}</h4>`;
+                const id = item.dataset.id;
 
-                const status = li.querySelector(".status");
+                const task = tasks.find(t => t.id == id);
 
-                if(task.status == "selesai"){
-                    status.style.backgroundColor = "green";
-                }else{                    
-                    status.style.backgroundColor = "red";
-                }
+                if (!task) return;
 
-                li.addEventListener("click",() => {
-                    popUp.style.display = "flex";
-                    overlay.style.display = "block";
-                    popUp.style.animation = "slideDown 0.3s ease-out";
-                    
-                    popUp.innerHTML = `
+                popUp.innerHTML = `
                     <div class="pop-up-header">
                         <button onclick="hidePopUp()"><i class="fa-solid fa-arrow-left"></i></button>
-                        <h1>${task.mata_pelajaran}</h1>
+                        <h2>${task.subject.subject_name.toUpperCase()}</h2>
                     </div>
-                    <div class="task-detail">
-                        <h1>${task.nama_tugas}</h1>
-                        <div class="detail">
-                            <p class="deadline">Deadline : ${task.deadline}</p>
-                            <p class="deskripsi">${task.tugas}</p>
-                        </div>
-                        <button class="selesai">Tandai Selesai</button>
-                    </div>`;
-                        
-                    const buttonSelesai = document.querySelector(".selesai");
 
-                    if(task.status == "selesai"){
-                        buttonSelesai.disabled = true;
-                        buttonSelesai.style.backgroundColor = "grey";
-                    }
-                });
-                taskList.appendChild(li);
-            }
-        ))
-        
+                    <div class="task-detail">
+                        <h3>${task.task_name.toUpperCase()}</h3>
+
+                        <div class="detail">
+                            <p>Deadline: ${task.deadline}</p>
+                            <p>${task.task}</p>
+                        </div>
+
+                        <button class="selesai">Tandai Selesai</button>
+                    </div>
+                `;
+
+                popUp.classList.add("show");
+                overlay.style.display = "block";
+
+                const btn = popUp.querySelector(".selesai");
+
+                if (task.status === "selesai") {
+                    btn.disabled = true;
+                    btn.style.backgroundColor = "gray";
+                }
+            });
+        });
+
         function hidePopUp(){
-            popUp.style.animation = "slideOut 0.3s ease-out";
-            overlay.style.animation = "fadeOut 0.3s ease-out";
-            setTimeout(() => {
-                popUp.style.display = "none";
-                overlay.style.display = "none";
-                
-                popUp.style.animation = "";
-                overlay.style.animation = "";
-            }, 300);
+            popUp.classList.remove("show");
+            overlay.style.display = "none";
         }
     </script>
 @endsection
