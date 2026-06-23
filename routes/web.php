@@ -10,7 +10,11 @@ Route::get('/login', function () {
 Route::get('/', function () {
     return view('index');
 });
-Route::get("/task",[taskController::class,"index"]);
+Route::get("/task/{id?}",[taskController::class,"index"]);
 Route::get("/subject",[subjectController::class,"index"]);
 Route::get('/subject/{id}', [subjectController::class, 'show'])
     ->name('subject.show');
+
+Route::get('/tambah',function(){
+    return view('tambahData');
+});

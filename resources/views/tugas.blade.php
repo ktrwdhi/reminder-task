@@ -117,6 +117,9 @@
     display: flex;
     animation: slideDown 0.3s ease-out;
 }
+ul h1{
+    text-align: center;
+}
 @media (max-width:800px) {
     .task-name, .status{
         transform: scale(0.9);
@@ -141,15 +144,19 @@
     <div class="task">
         <h2>DAFTAR TUGAS</h2>
         <ul class="task-list">
-            @foreach ($tasks as $task)    
-                <li class="task-item" id="task-item" data-id="{{ $task->id }}">
-                    <div class="task-name">
-                        <h3>{{ strtoupper($task->task_name) }}</h3>
-                        <p>Deadline : {{ $task->deadline }}</p>
-                    </div>
-                    <h4 class="status">{{ $task->status }}</h4>
-                </li>
-            @endforeach
+            @if ($tasks->isEmpty())
+                <h1>Task doesn't exist</h1>
+            @else
+                @foreach ($tasks as $task)    
+                    <li class="task-item" id="task-item" data-id="{{ $task->id }}">
+                        <div class="task-name">
+                            <h3>{{ strtoupper($task->task_name) }}</h3>
+                            <p>Deadline : {{ $task->deadline }}</p>
+                        </div>
+                        <h4 class="status">{{ $task->status }}</h4>
+                    </li>
+                @endforeach
+            @endif
         </ul>
     </div>
     <div class="pop-up"></div>

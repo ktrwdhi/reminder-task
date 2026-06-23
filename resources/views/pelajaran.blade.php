@@ -7,7 +7,7 @@
         <h1>Daftar Pelajaran</h1>
         <div class="subject-list">
             @foreach ($subjects as $subject)
-                <a href="/subject/{{ Str::uuid($subject->id) }}">
+                <a href="/subject/{{ $subject->uuid }}">
                     <div class="subject-detail">
                         <h1>{{ $subject->subject_name }}</h1>
                         <p>{{ $subject->lecturer_name }}</p>
