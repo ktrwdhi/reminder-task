@@ -28,6 +28,7 @@
             height: 100vh;
             flex-direction: column;
             gap: 20px;
+            overflow-x: hidden;
         }
 
         .input{
@@ -122,35 +123,56 @@
             color: white;
             text-decoration: underline;
         }
+        @media(max-width:600px){
+            .input{
+                background: none;
+                justify-content: center;
+                align-items: center;
+                width: 90%;
+            }
+            .input h1{
+                font-size: 50px;
+            }
+            .input-text input{
+                border-bottom: 2px solid var(--primary-color);
+                border-radius: 0px;
+            }
+            .input-text label{
+                display: none;
+            }
+        }
     </style>
 </head>
 <body>
-    <div class="input" id="input">
-        <h1>LOG IN</h1> 
+    <form action="{{ route('login.store') }}" method="post">
+        <div class="input" id="input">
+            <h1>LOG IN</h1> 
 
-        <div class="input-text">
-            <label for="nama">NIM :</label>
-            <input type="number" id="nim" placeholder="Masukkan nim anda">
-        </div>
-
-        <div class="input-text">
-            <label for="nilai">Password:</label>
-            <input type="password" id="nisn" placeholder="Masukkan password anda">
-        </div>
-
-        <div class="options">
-            <div class="remember">
-                <input type="checkbox" id="remember">
-                <label for="remember">Remember Me</label>
+            @csrf
+            <div class="input-text">
+                <label for="nama">NIM :</label>
+                <input type="number" id="nim" name="nim" placeholder="Masukkan nim anda">
             </div>
 
-            <a href="#" class="forgot-password">Forgot Password?</a>
-        </div>
+            <div class="input-text">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" placeholder="Masukkan password anda">
+            </div>
 
-        <div class="input-text">
-            <button type="button" id="submit">Submit</button>
-        </div> 
-    </div>
+            <div class="options">
+                <div class="remember">
+                    <input type="checkbox" id="remember">
+                    <label for="remember">Remember Me</label>
+                </div>
+
+                <a href="#" class="forgot-password">Forgot Password?</a>
+            </div>
+
+            <div class="input-text">
+                <button type="submit" id="submit">Submit</button>
+            </div>
+        </div>
+    </form> 
 
 </body>
 </html>

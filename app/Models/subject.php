@@ -14,4 +14,5 @@ class subject extends Model
     public function tasks(){
         $tasks = $this->hasMany(task::class);
     }
+    
 }

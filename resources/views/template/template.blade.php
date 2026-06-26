@@ -21,7 +21,7 @@
             --forth-color: rgb(255, 255, 255);
         }
         body{
-            font-family: lilita one;
+            font-family: 'Lilita One', sans-serif;
             background-color: #e2e2e2;
         }
         .header{
@@ -36,14 +36,16 @@
         }
         .hamburger{
             display: flex;
-            justify-content: center;
+            align-items: center; /* Diubah agar icon sejajar vertikal */
             margin-left: 40px;
+            gap: 15px;
         }
         .hamburger button{
             background: none;
             border: none;
             font-size: 25px;
             cursor: pointer;
+            color: var(--forth-color); /* Warna icon disesuaikan */
         }
         .biodata{
             display: flex;
@@ -66,18 +68,6 @@
             border-radius: 50%;
             object-fit: cover;
         }
-        .theme-toggle button{
-            border: none;
-            width:40px;
-            height:40px;
-            border-radius: 50%;
-            background-color: var(--secondary-color);
-            font-size: 25px;
-            cursor: pointer;
-        }
-        .theme-toggle i{
-            color: var(--primary-color);
-        }
         .nametag{
             background-color: var(--secondary-color);
             padding: 8px;
@@ -85,92 +75,121 @@
             color: var(--primary-color);
         }
         .header h1{
-            padding: 25px;
             color: var(--secondary-color);
+            font-size: 24px;
         }
+        
+        /* SIDEBAR STYLES */
         .sidebar{
             width: 300px;
-            height: 100vh;
+            height: calc(100vh - 90px); /* Disesuaikan agar tidak offset di bawah */
             top: 90px;
             background-color: rgb(206, 129, 42);
             position: fixed;
-            display: block;
             transition: transform 0.3s ease;
+            z-index: 99;
         }
 
+        /* Default PC: sidebar muncul. Kelas .hide akan menyembunyikannya */
         .sidebar.hide{
-            transform: translateX(-100%);
+            transform: translateX(-300px);
         }
         
         .container{
             display: flex;
             padding-top: 90px;
         }
+        
         .main-content{
             margin-left: 300px;
             padding: 20px;
             display: flex;
             flex-direction: column;
             gap: 20px;
-            width:100%;
+            width: calc(100% - 300px);
             transition: all 0.3s ease;
             color: rgb(141, 129, 20);
         }
+        
         .main-content.full{
             margin-left: 0;
             width: 100%;
         }
+        
         .sidebar ul{
             padding: 20px;
             list-style: none;
         }
-        .sidebar li{
-            padding: 10px;
+        
+        /* Perbaikan selector agar form dan li seragam */
+        .sidebar li, .sidebar form button {
+            width: 100%;
+            text-align: left;
+            font-family: 'Lilita One', sans-serif;
+        }
+
+        .sidebar ul a, .sidebar form button {
+            display: flex;
+            align-items: center;
+            padding: 12px 15px;
             margin-top: 10px;
             font-size: 20px;
             cursor: pointer;
-        }
-        .sidebar li:hover{
-            background-color: var(--secondary-color);
-            padding: 10px;
+            text-decoration: none;
+            color: #e0e0e0;
             border-radius: 15px;
-            color:var(--primary-color);
+            transition: background 0.2s;
+            border: none;
+            background: none;
         }
-        .sidebar i,.sidebar span{
+        
+        .sidebar ul a:hover, .sidebar form button:hover{
+            background-color: var(--secondary-color);
+            color: var(--primary-color);
+        }
+        
+        /* Mengatur warna icon saat hover */
+        .sidebar ul a:hover i, .sidebar form button:hover i {
+            color: var(--primary-color);
+        }
+
+        .sidebar i{
             margin-right: 20px;
             font-size: 25px;
             color: #e0e0e0;
+            width: 30px; /* Lebar konstan agar text sejajar vertikal */
+            text-align: center;
         }
-        .sidebar a{
-            text-decoration: none;
-        }
-        @media (max-width:800px) {
+
+        /* RESPONSIVE (MOBILE) */
+        @media (max-width: 800px) {
             .sidebar{
-                width: 200px;
-                transform: translateX(-100%);
-                transition: transform 0.3s ease;
-                z-index: 99;
+                width: 260px;
+                transform: translateX(-260px); /* Sembunyi di kiri saat mobile */
             }
 
+            /* Saat mobile, gunakan class .show untuk memunculkan */
             .sidebar.show{
                 transform: translateX(0);
             }
 
-            .sidebar ul{
-                padding: 10px;
+            .sidebar.hide {
+                transform: translateX(-260px);
             }
+
+            .main-content{
+                margin-left: 0;
+                width: 100%;
+            }
+            
             .hamburger h1{
                 display: none;
             }
-            .sidebar i,.sidebar span{
+            .sidebar i, .sidebar span{
                 font-size: 18px;
-            }
-            .main-content{
-                margin: 0;
             }
             .header h1{
                 font-size: 20px;
-                padding: 30px;
             }
            .profile-picture img{
                 width:40px ;
@@ -186,27 +205,39 @@
 <body>
     <div class="header" id="header">
         <div class="hamburger">
-            <button onclick="hideSidebar()"><i class="fa-solid fa-bars"></i></button>
+            <button onclick="toggleSidebar()"><i class="fa-solid fa-bars"></i></button>
             @yield('title')
         </div>
         <div class="biodata">
             <div class="nametag">
-                <p>Katiar Wadhi</p>
+                <p>{{ session("name") }}</p>
             </div>
-            <!-- <div class="theme-toggle">
-                <button id="toggle-btn"><i class="fa-solid fa-moon"></i></button>     
-            </div> -->
             <div class="profile-picture">
-                <img src="{{ asset("asset/orang.png") }}">
+                <img src="{{ asset('asset/orang.png') }}" alt="Profile">
             </div>
         </div>
     </div>
     <div class="container"> 
         <div class="sidebar" id="sidebar">
             <ul>
-                <a href="/"><li><i class="fa-solid fa-house"></i><span>Beranda</span></li></a>
-                <a href="/task"><li><i class="fa-solid fa-list-check"></i><span>Tugas</span></li></a>
-                <a href="/subject"><li><i class="fa-solid fa-graduation-cap"></i></i><span>Pelajaran</span></li></a>
+                <li>
+                    <a href="/"><i class="fa-solid fa-house"></i><span>Beranda</span></a>
+                </li>
+                <li>
+                    <a href="/task"><i class="fa-solid fa-list-check"></i><span>Tugas</span></a>
+                </li>
+                <li>
+                    <a href="/subject"><i class="fa-solid fa-graduation-cap"></i><span>Pelajaran</span></a>
+                </li>
+                <li>
+                    <form action="{{ route('logout') }}" method="post">
+                        @csrf
+                        <button type="submit">
+                            <i class="fa-solid fa-right-from-bracket"></i>
+                            <span>Logout</span>
+                        </button>
+                    </form>
+                </li>
             </ul>
         </div>
         <div class="main-content">
@@ -216,12 +247,17 @@
 
     <script>
         const sidebar = document.getElementById("sidebar");
-        const mainContent = document.querySelector(".main-content")
+        const mainContent = document.querySelector(".main-content");
 
-        function hideSidebar(){
-            sidebar.classList.toggle("hide");
-            sidebar.classList.toggle("show");
-            mainContent.classList.toggle("full")
+        function toggleSidebar(){
+            if (window.innerWidth > 800) {
+                // Mode Desktop: Toggle sembunyikan rontokkan margin main-content
+                sidebar.classList.toggle("hide");
+                mainContent.classList.toggle("full");
+            } else {
+                // Mode Mobile: Toggle munculkan slide-in overlay tanpa ganggu main-content
+                sidebar.classList.toggle("show");
+            }
         }
     </script>
 </body>

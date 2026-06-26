@@ -165,6 +165,15 @@ ul h1{
         const popUp = document.querySelector(".pop-up");
         const overlay = document.querySelector(".overlay");
         const taskItems = document.querySelectorAll(".task-item");
+        const status = document.querySelectorAll('.status');
+
+        status.forEach(item => {
+            if(item.textContent.trim().toLowerCase() == "belum selesai"){
+                item.style.backgroundColor = "red";
+            }else{
+                item.style.backgroundColor = "green";
+            }
+        });
 
         taskItems.forEach(item => {
             item.addEventListener("click", () => {

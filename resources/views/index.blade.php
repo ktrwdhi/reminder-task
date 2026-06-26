@@ -70,54 +70,38 @@
 @endsection
 @section('content')
     <div class="greetings">
-            <h2>SELAMAT <span id="time"></span>, KATIAR WADHI!</h2>
+            <h2>SELAMAT <span id="time"></span>, {{ Session("name") }}!</h2>
             <p>Semoga harimu menyenangkan dan penuh prestasi!</p>
         </div>
         <div class="info">
             <div class="cards">
                 <h2>TOTAL TUGAS</h2>
-                <p>8</p>
+                <p>{{ $totalTugas }}</p>
             </div>
             <div class="cards">
                 <h2>TUGAS SELESAI</h2>
-                <p>8</p>
+                <p>{{ $tugasSelesai }}</p>
             </div>
             <div class="cards">
                 <h2>TUGAS BELUM DIKERJAKAN</h2>
-                <p>8</p>
+                <p>{{ $tugasBelumSelesai }}</p>
             </div>
             <div class="cards">
-                <h2>Total Tugas</h2>
-                <p>8</p>
+                <h2>TUGAS TERLEWAT</h2>
+                <p>{{ $tugasTerlewat }}</p>
             </div>
         </div>
         <div class="new-task">
             <h2>Tugas Terbaru</h2>
             <ul class="task">
-                <li>
-                    <div class="task-name">
-                        <h4>Bahasa Indonesia</h4>
-                        <p>Deadline : 13 Mei 2025</p>
-                    </div>
-                </li>
-                <li>
-                    <div class="task-name">
-                        <h4>Bahasa Indonesia</h4>
-                        <p>Deadline : 13 Mei 2025</p>
-                    </div>
-                </li>
-                <li>
-                    <div class="task-name">
-                        <h4>Bahasa Indonesia</h4>
-                        <p>Deadline : 13 Mei 2025</p>
-                    </div>
-                </li>
-                <li>
-                    <div class="task-name">
-                        <h4>Bahasa Indonesia</h4>
-                        <p>Deadline : 13 Mei 2025</p>
-                    </div>
-                </li>
+                @foreach ($tasks as $task)    
+                    <li>
+                        <div class="task-name">
+                            <h4>{{ $task->task_name }}</h4>
+                            <p>Deadline : {{ $task->deadline }}</p>
+                        </div>
+                    </li>
+                @endforeach
             </ul>
         </div>
         

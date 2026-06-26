@@ -14,38 +14,6 @@
                     </div>
                 </a>    
             @endforeach
-            <div class="subject-detail">
-                <h1>Bahasa Indonesia</h1>
-                <p>Pak anjing</p>
-            </div>
-            <div class="subject-detail">
-                <h1>Bahasa Indonesia</h1>
-                <p>Pak anjing</p>
-            </div>
-            <div class="subject-detail">
-                <h1>Bahasa Indonesia</h1>
-                <p>Pak anjing</p>
-            </div>
-            <div class="subject-detail">
-                <h1>Bahasa Indonesia</h1>
-                <p>Pak anjing</p>
-            </div>
-            <div class="subject-detail">
-                <h1>Bahasa Indonesia</h1>
-                <p>Pak anjing</p>
-            </div>
-            <div class="subject-detail">
-                <h1>Bahasa Indonesia</h1>
-                <p>Pak anjing</p>
-            </div>
-            <div class="subject-detail">
-                <h1>Bahasa Indonesia</h1>
-                <p>Pak anjing</p>
-            </div>
-            <div class="subject-detail">
-                <h1>Bahasa Indonesia</h1>
-                <p>Pak anjing</p>
-            </div>
         </div>
     </div>
 @endsection
